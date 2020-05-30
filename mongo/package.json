@@ -1,0 +1,26 @@
+{
+  "name": "mongo-security",
+  "version": "1.0.0",
+  "description": "Experiments with MongoDB Security",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "ls && nodemon src/app.mjs",
+    "server-dev-start": "docker start ",
+    "server-dev-run": "docker rm msec_server || true && docker run -it --rm --name msec_server -p 5555:5555 --network msec_net -v $(pwd)/:/usr/src/app -v /usr/src/app/node_modules msec_server_image",
+    "server-dev-build": "docker build -f server.Dockerfile -t msec_server_image .",
+    "db-dev-sh": "docker exec -it msec_db /bin/sh",
+    "db-dev-start": "docker start -ai msec_db",
+    "db-dev-run": "docker rm msec_db || true && docker run -it --name msec_db -p 27017:27017 --network msec_net -v $(pwd)/db:/data/db mongo:4",
+    "network-create": "docker network create -d bridge msec_net"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@awaitjs/express": "^0.6.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

@@ -1,0 +1,7 @@
+- [x] Dockerfile server
+- [x] Express.js server
+- [x] commands to run server
+- [x] clean up run
+- [x] docker command for mongodb server
+- [x] MongoDB client
+- [x] Sample endpoints
