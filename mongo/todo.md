@@ -7,6 +7,15 @@
 - [x] docker command for mongodb server
 - [x] MongoDB client
 - [x] Sample endpoints
+- [x] Add eslint config
+- [x] Send db con to lib
+- [x] use mongo lib in app.js
+- [x] working ping test case
+- [x] create user mocks
+- [x] create users list test
+- [ ] Implement gt query injection
+- [ ] Add logger
+
 
 ## Links
 

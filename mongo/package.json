@@ -3,21 +3,30 @@
   "version": "1.0.0",
   "description": "Experiments with MongoDB Security",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "ls && nodemon src/app.mjs",
+    "start-dev": "nodemon src/server.js",
     "server-dev-start": "docker start ",
-    "server-dev-run": "docker rm msec_server || true && docker run -it --rm --name msec_server -p 5555:5555 --network msec_net -v $(pwd)/:/usr/src/app -v /usr/src/app/node_modules msec_server_image",
+    "server-dev-run": "docker rm msec_server || true && docker run -it --name msec_server -p 5555:5555 --network msec_net -v $(pwd)/:/usr/src/app --mount source=msec_server_node_modules,target=/usr/src/app/node_modules msec_server_image",
     "server-dev-build": "docker build -f server.Dockerfile -t msec_server_image .",
+    "server-dev-test": "npm run server-dev-run npm run test",
+    "list-dir": "ls -h",
+    "test": "mocha --exit --recursive",
     "db-dev-sh": "docker exec -it msec_db /bin/sh",
     "db-dev-start": "docker start -ai msec_db",
     "db-dev-run": "docker rm msec_db || true && docker run -it --name msec_db -p 27017:27017 --network msec_net -v $(pwd)/db:/data/db mongo:4",
-    "network-create": "docker network create -d bridge msec_net"
+    "network-create": "docker network create -d bridge msec_net",
+    "ncat": "cat",
+    "cat-this": "npm run ncat package.json"
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@awaitjs/express": "^0.6.0",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "express": "^4.17.1",
+    "mocha": "^7.2.0",
     "mongodb": "^3.5.8"
   },
   "devDependencies": {
